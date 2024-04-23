@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div>
+
+            <CKEditor
+                editor={ClassicEditor}
+                data="<p>Hello from CKEditor&nbsp;5!</p>"
+                onReady={editor => {
+                    console.log('Editor is ready to use!', editor);
+                }}
+                onChange={(event) => {
+                    console.log(event);
+                }}
+                onBlur={(event, editor) => {
+                    console.log('Blur.', editor);
+                }}
+                onFocus={(event, editor) => {
+                    console.log('Focus.', editor);
+                }}
+            />
+
+        </div>
+    )
 }
 
-export default App;
+export default App
